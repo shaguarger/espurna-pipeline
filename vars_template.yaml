@@ -1,0 +1,23 @@
+# build
+branch: dev
+environment: huacanxing-h801-ota
+# deploy
+password: fibonacci
+controller_1: 
+controller_1_name: 
+controller_2: 
+controller_2_name: 
+controller_3: 
+controller_3_name: 
+controller_4: 
+controller_4_name: 
+controller_5: 
+controller_5_name: 
+controller_6: 
+controller_6_name: 
+controller_7: 
+controller_7_name: 
+controller_8: 
+controller_8_name: 
+controller_9: 
+controller_9_name: 
