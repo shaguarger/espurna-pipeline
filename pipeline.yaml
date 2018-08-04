@@ -21,7 +21,7 @@ jobs:
       image_resource:
         type: docker-image
         source:
-          repository: pitkley/platformio
+          repository: shaguarger/platformio
       inputs:
         - name: resource-espurna
       outputs:
