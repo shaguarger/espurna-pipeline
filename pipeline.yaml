@@ -35,56 +35,57 @@ jobs:
          pio run -e ((environment))
          cp .pioenvs/((environment))/firmware.bin ../../artifact/
 
-  - task: upload to ((controller_1_name))
-    file: pipeline/tasks/deploy.yaml
-    params:
-      ESPURNA_PASSWORD: ((password))
-      ESPURNA_TARGET: ((controller_1))
+  - aggregate:
+    - task: upload to ((controller_1_name))
+      file: pipeline/tasks/deploy.yaml
+      params:
+        ESPURNA_PASSWORD: ((password))
+        ESPURNA_TARGET: ((controller_1))
 
-  - task: upload to ((controller_2_name))
-    file: pipeline/tasks/deploy.yaml
-    params:
-      ESPURNA_PASSWORD: ((password))
-      ESPURNA_TARGET: ((controller_2))
+    - task: upload to ((controller_2_name))
+      file: pipeline/tasks/deploy.yaml
+      params:
+        ESPURNA_PASSWORD: ((password))
+        ESPURNA_TARGET: ((controller_2))
 
-  - task: upload to ((controller_3_name))
-    file: pipeline/tasks/deploy.yaml
-    params:
-      ESPURNA_PASSWORD: ((password))
-      ESPURNA_TARGET: ((controller_3))
+    - task: upload to ((controller_3_name))
+      file: pipeline/tasks/deploy.yaml
+      params:
+        ESPURNA_PASSWORD: ((password))
+        ESPURNA_TARGET: ((controller_3))
 
-  - task: upload to ((controller_4_name))
-    file: pipeline/tasks/deploy.yaml
-    params:
-      ESPURNA_PASSWORD: ((password))
-      ESPURNA_TARGET: ((controller_4))
+    - task: upload to ((controller_4_name))
+      file: pipeline/tasks/deploy.yaml
+      params:
+        ESPURNA_PASSWORD: ((password))
+        ESPURNA_TARGET: ((controller_4))
 
-  - task: upload to ((controller_5_name)) 
-    file: pipeline/tasks/deploy.yaml
-    params:
-      ESPURNA_PASSWORD: ((password))
-      ESPURNA_TARGET: ((controller_5))
+    - task: upload to ((controller_5_name)) 
+      file: pipeline/tasks/deploy.yaml
+      params:
+        ESPURNA_PASSWORD: ((password))
+        ESPURNA_TARGET: ((controller_5))
 
-  - task: upload to ((controller_6_name)) 
-    file: pipeline/tasks/deploy.yaml
-    params:
-      ESPURNA_PASSWORD: ((password))
-      ESPURNA_TARGET: ((controller_6))
+    - task: upload to ((controller_6_name)) 
+      file: pipeline/tasks/deploy.yaml
+      params:
+        ESPURNA_PASSWORD: ((password))
+        ESPURNA_TARGET: ((controller_6))
 
-  - task: upload to ((controller_7_name))
-    file: pipeline/tasks/deploy.yaml
-    params:
-      ESPURNA_PASSWORD: ((password))
-      ESPURNA_TARGET: ((controller_7))
+    - task: upload to ((controller_7_name))
+      file: pipeline/tasks/deploy.yaml
+      params:
+        ESPURNA_PASSWORD: ((password))
+        ESPURNA_TARGET: ((controller_7))
 
-  - task: upload to ((controller_8_name))
-    file: pipeline/tasks/deploy.yaml
-    params:
-      ESPURNA_PASSWORD: ((password))
-      ESPURNA_TARGET: ((controller_8))
+    - task: upload to ((controller_8_name))
+      file: pipeline/tasks/deploy.yaml
+      params:
+        ESPURNA_PASSWORD: ((password))
+        ESPURNA_TARGET: ((controller_8))
 
-  - task: upload to ((controller_9_name))
-    file: pipeline/tasks/deploy.yaml
-    params:
-      ESPURNA_PASSWORD: ((password))
-      ESPURNA_TARGET: ((controller_9))
+    - task: upload to ((controller_9_name))
+      file: pipeline/tasks/deploy.yaml
+      params:
+        ESPURNA_PASSWORD: ((password))
+        ESPURNA_TARGET: ((controller_9))
