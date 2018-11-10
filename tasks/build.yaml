@@ -1,0 +1,21 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: shaguarger/platformio
+
+inputs:
+  - name: resource-espurna
+
+outputs:
+  - name: artifact
+
+run:
+  path: sh
+  args: 
+  - -ec
+  - |
+    cd resource-espurna/code/
+    pio run -e $ENVIRONMENT
+    cp .pioenvs/$ENVIRONMENT/firmware.bin ../../artifact/
