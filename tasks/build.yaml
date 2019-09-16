@@ -16,6 +16,7 @@ run:
   args: 
   - -ec
   - |
+    ROOT=$PWD
     cd resource-espurna/code/
     pio run -e $ENVIRONMENT
-    cp .pioenvs/$ENVIRONMENT/firmware.bin ../../artifact/
+    cp .pio/build/$ENVIRONMENT/firmware.bin $ROOT/artifact/
