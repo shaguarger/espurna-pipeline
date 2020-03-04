@@ -1,76 +1,120 @@
 resources:
   - name: resource-espurna
+    icon: github-circle
     type: git
     source:
       uri: https://github.com/xoseperez/espurna.git
       branch: ((branch))
-  
-  - name: pipeline
-    type: git
+
+build: &build_espurna
+  platform: linux
+  image_resource:
+    type: docker-image
     source:
-      uri: https://github.com/shaguarger/espurna-pipeline
+      repository: shaguarger/platformio
+  inputs:
+    - name: resource-espurna
+  outputs:
+    - name: artifact
+  run:
+    path: sh
+    args:
+      - -ec
+      - |
+        ROOT=$PWD
+        cd resource-espurna/code/
+        pio run -e $ENVIRONMENT
+        cp .pio/build/$ENVIRONMENT/firmware.bin $ROOT/artifact/
+
+deploy: &deploy_controller
+  platform: linux
+  image_resource:
+    type: docker-image
+    source:
+      repository: appropriate/curl
+  inputs:
+    - name: artifact 
+  run:
+    path: sh
+    args:
+      - -ec
+      - |
+        curl -XPOST --digest \
+          -u$ESPURNA_USERNAME:$ESPURNA_PASSWORD \
+          -H "Content-Type: multipart/form-data" \
+          -F "filename=@artifact/firmware.bin" \
+          -F "name=\"upgrade\"" http://$ESPURNA_TARGET/upgrade
 
 jobs:
 - name: job-build-espurna-h801
   plan:
   - get: resource-espurna
-  - get: pipeline
   - task: build espurna for ((environment.h801))
     params:
       ENVIRONMENT: ((environment.h801))
-    file: pipeline/tasks/build.yml
+    config:
+      <<: *build_espurna 
 
   - in_parallel:
     - task: upload to ((controller_1_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_1))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_2_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_2))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_3_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_3))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_4_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_4))
+      config:
+        <<: *deploy_controller
 
-    - task: upload to ((controller_5_name)) 
-      file: pipeline/tasks/deploy.yml
+    - task: upload to ((controller_5_name))
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_5))
+      config:
+        <<: *deploy_controller
 
-    - task: upload to ((controller_6_name)) 
-      file: pipeline/tasks/deploy.yml
+    - task: upload to ((controller_6_name))
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_6))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_7_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_7))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_8_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_8))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_9_name))
-      file: pipeline/tasks/deploy.yml
+      config:
+        <<: *deploy_controller
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_9))
@@ -78,69 +122,78 @@ jobs:
 - name: job-build-espurna-sonoff-basic
   plan:
   - get: resource-espurna
-  - get: pipeline
   - task: build espurna for ((environment.sonoff-basic))
     params:
       ENVIRONMENT: ((environment.sonoff-basic))
-    file: pipeline/tasks/build.yml
-
+    config:
+      <<: *build_espurna 
   - in_parallel:
     - task: upload to ((controller_10_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_10))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_11_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_11))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_12_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_12))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_13_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_13))
+      config:
+        <<: *deploy_controller
 
-    - task: upload to ((controller_14_name)) 
-      file: pipeline/tasks/deploy.yml
+    - task: upload to ((controller_14_name))
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_14))
+      config:
+        <<: *deploy_controller
 
-    - task: upload to ((controller_15_name)) 
-      file: pipeline/tasks/deploy.yml
+    - task: upload to ((controller_15_name))
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_15))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_16_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_16))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_17_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_17))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_18_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_18))
+      config:
+        <<: *deploy_controller
 
     - task: upload to ((controller_19_name))
-      file: pipeline/tasks/deploy.yml
       params:
         ESPURNA_PASSWORD: ((password))
         ESPURNA_TARGET: ((controller_19))
+      config:
+        <<: *deploy_controller
