@@ -1,6 +1,7 @@
 resources:
   - name: resource-espurna
     icon: github-circle
+    check_every: 60m
     type: git
     source:
       uri: https://github.com/xoseperez/espurna.git
