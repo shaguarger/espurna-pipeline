@@ -20,7 +20,7 @@ jobs:
       ENVIRONMENT: ((environment.h801))
     file: pipeline/tasks/build.yml
 
-  - aggregate:
+  - in_parallel:
     - task: upload to ((controller_1_name))
       file: pipeline/tasks/deploy.yml
       params:
@@ -84,7 +84,7 @@ jobs:
       ENVIRONMENT: ((environment.sonoff-basic))
     file: pipeline/tasks/build.yml
 
-  - aggregate:
+  - in_parallel:
     - task: upload to ((controller_10_name))
       file: pipeline/tasks/deploy.yml
       params:
