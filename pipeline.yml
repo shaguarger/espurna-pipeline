@@ -77,13 +77,6 @@ jobs:
       config:
         <<: *deploy_controller
 
-    - task: upload to ((controller_4_name))
-      params:
-        ESPURNA_PASSWORD: ((password))
-        ESPURNA_TARGET: ((controller_4))
-      config:
-        <<: *deploy_controller
-
     - task: upload to ((controller_5_name))
       params:
         ESPURNA_PASSWORD: ((password))
