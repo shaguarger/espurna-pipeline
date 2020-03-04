@@ -39,11 +39,18 @@ deploy: &deploy_controller
     args:
       - -ec
       - |
+        if [ "$ESPURNA_TARGET" = "undefined" ]; then
+          echo "skipping undefined controller"
+          return 0
+        fi
+
+        echo "deploying to ${ESPURNA_TARGET}"
         curl -XPOST --digest \
           -u$ESPURNA_USERNAME:$ESPURNA_PASSWORD \
           -H "Content-Type: multipart/form-data" \
           -F "filename=@artifact/firmware.bin" \
           -F "name=\"upgrade\"" http://$ESPURNA_TARGET/upgrade
+        echo "done"
 
 jobs:
 - name: job-build-espurna-h801
