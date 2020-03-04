@@ -5,41 +5,41 @@ environment: huacanxing-h801-ota
   sonoff-basic: itead-sonoff-basic-ota
 # deploy
 password: fibonacci
-controller_1: 
+controller_1: undefined
 controller_1_name: 
-controller_2: 
+controller_2: undefined
 controller_2_name: 
-controller_3: 
+controller_3: undefined
 controller_3_name: 
-controller_4: 
+controller_4: undefined
 controller_4_name: 
-controller_5: 
+controller_5: undefined
 controller_5_name: 
-controller_6: 
+controller_6: undefined
 controller_6_name: 
-controller_7: 
+controller_7: undefined
 controller_7_name: 
-controller_8: 
+controller_8: undefined
 controller_8_name: 
-controller_9: 
+controller_9: undefined
 controller_9_name: 
-controller_10: 
+controller_10: undefined
 controller_10_name: 
-controller_11: 
+controller_11: undefined
 controller_11_name: 
-controller_12: 
+controller_12: undefined
 controller_12_name: 
-controller_13: 
+controller_13: undefined
 controller_13_name: 
-controller_14: 
+controller_14: undefined
 controller_14_name: 
-controller_15: 
+controller_15: undefined
 controller_15_name: 
-controller_16: 
+controller_16: undefined
 controller_16_name: 
-controller_17: 
+controller_17: undefined
 controller_17_name: 
-controller_18: 
+controller_18: undefined
 controller_18_name: 
-controller_19: 
+controller_19: undefined
 controller_19_name: 
